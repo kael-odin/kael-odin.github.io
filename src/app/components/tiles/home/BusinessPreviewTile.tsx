@@ -9,8 +9,8 @@ export default function BusinessPreviewTile() {
 			<div className="absolute -top-20 -right-14 w-72 h-72 rounded-full bg-[#fbbf24] opacity-25 blur-3xl dark:opacity-10" aria-hidden />
 			<div className="absolute -bottom-24 left-[6%] w-64 h-64 rounded-full bg-[#fb7185] opacity-20 blur-3xl dark:opacity-10" aria-hidden />
 
-			{/* 浏览器窗口 */}
-			<div className="absolute right-[7%] top-1/2 -translate-y-1/2 w-[380px] max-w-[62%] rotate-1 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[54%] group-hover:rotate-0">
+			{/* 浏览器窗口：对标原模板的大角度斜置，出血裁切 */}
+			<div className="w-[380px] max-w-[62%] absolute left-[44%] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-[30deg] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[54%] group-hover:-rotate-[26deg]">
 				<div className="rounded-2xl bg-white dark:bg-[#161d2b] ring-1 ring-black/10 dark:ring-white/10 shadow-[0_32px_64px_-18px_rgba(2,8,23,0.35)] overflow-hidden">
 					{/* 标题栏 */}
 					<div className="flex items-center gap-2 px-3.5 py-2.5 bg-slate-50 dark:bg-white/[0.04] border-b border-black/5 dark:border-white/10">
@@ -55,7 +55,7 @@ export default function BusinessPreviewTile() {
 			</div>
 
 			{/* 悬浮玻璃徽章 */}
-			<div className="absolute top-5 left-5 z-20 flex items-center gap-1.5 rounded-full bg-white/75 dark:bg-white/10 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-200 ring-1 ring-black/5 dark:ring-white/15 shadow-[0_10px_24px_-8px_rgba(2,8,23,0.3)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5">
+			<div className="absolute top-5 right-6 z-20 flex items-center gap-1.5 rounded-full bg-white/75 dark:bg-white/10 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-200 ring-1 ring-black/5 dark:ring-white/15 shadow-[0_10px_24px_-8px_rgba(2,8,23,0.3)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5">
 				<FiGithub className="h-3.5 w-3.5 text-slate-600 dark:text-slate-300" aria-hidden />
 				开源 · 持续输出
 			</div>

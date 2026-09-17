@@ -85,7 +85,11 @@ export default function HomeNav() {
                             <li key={href} className="relative z-10 w-full">
                                 <Link
                                     href={href}
-                                    className={`block w-full text-center rounded-full px-0.5 py-2 font-semibold transition-colors duration-200 truncate text-xs sm:text-sm
+                                    className={`block w-full text-center rounded-full px-0.5 py-2 font-semibold truncate text-xs sm:text-sm
+                                        transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+                                        hover:-translate-y-[3px] hover:bg-white/90 hover:shadow-[0_14px_28px_-10px_rgba(2,8,23,0.35)]
+                                        dark:hover:bg-white/[0.12] dark:hover:shadow-[0_14px_28px_-10px_rgba(0,0,0,0.9)]
+                                        active:translate-y-0 active:scale-[0.97]
                                         ${isActive ? "text-gray-900 dark:text-white" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"}`}
                                 >
                                     {label}
