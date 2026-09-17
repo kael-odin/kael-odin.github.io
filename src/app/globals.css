@@ -1,10 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Junge&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-
-.junge-regular {
-  font-family: 'Junge', serif;
-}
 
 .font-decorative {
   font-family: var(--font-young-serif), serif;
