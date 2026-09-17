@@ -144,8 +144,8 @@ export default function HomeInner() {
                 >
                     <SortableContext items={items} strategy={rectSortingStrategy}>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full auto-rows-min">
-                            {items.map((id) => (
-                                <SortableItem key={id} id={id} className={TILE_CONFIG[id].className} disabled={isMobile}>
+                            {items.map((id, index) => (
+                                <SortableItem key={id} id={id} className={TILE_CONFIG[id].className} disabled={isMobile} enterIndex={index}>
                                     {TILE_CONFIG[id].content}
                                 </SortableItem>
                             ))}

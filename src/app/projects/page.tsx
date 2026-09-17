@@ -79,12 +79,12 @@ export default function ProjectPage() {
                             ref={gridRef}
                             className="grid grid-cols-1 md:grid-cols-2 max-w-300 w-full" // Added gap-4 for safe spacing
                         >
-                            {items.map((name) => {
+                            {items.map((name, index) => {
                                 const project = projectsData.find(p => p.name === name);
                                 if (!project) return null;
 
                                 return (
-                                    <SortableItem key={name} id={name} disabled={isMobile}>
+                                    <SortableItem key={name} id={name} disabled={isMobile} enterIndex={index}>
                                         <BentoTile className="w-full h-full md:h-75 transition-all duration-200">
                                             <ProjectTile project={project} />
                                         </BentoTile>

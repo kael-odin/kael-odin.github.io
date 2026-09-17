@@ -1,463 +1,140 @@
+/**
+ * 项目数据：全部来自 github.com/kael-odin 的真实公开仓库。
+ * 新增项目：补一条数据 + 用 assets-src/build-covers.mjs 生成一张封面即可。
+ */
 export const projectsData = [
   {
-    name: "Scheduler List",
+    name: "My OS Homepage",
     description:
-      "A real-time dashboard package for  Laravel's task scheduler. Track every Artisan command running, what's next, and trigger tasks on demand. Echo output streams live.",
-    image: "/projects/scheduler.png",
-    github: "https://github.com/Akshayp2002/scheduler-list-laravel",
-    view: "https://scheduler.devakshay.app/",
+      "以「操作系统」为灵感的互动个人主页模板：终端开机动画 → 数字桌面。改一个配置文件就能变成你自己的主页。",
+    image: "/projects/cover-my-os.svg",
+    github: "https://github.com/kael-odin/my-os-homepage",
+    view: "https://kael-odin.github.io/my-os-homepage/",
     workStatus: true,
-    date: "May - 2026",
-    demo: false,
-    personal: false,
-    tech: [
-      {
-        name: "PHP",
-        image: "/tech/php.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "Spatie",
-        image: "/tech/spatie.svg",
-      },
-    ],
-  },
-  {
-    name: "Portfolio",
-    description:
-      "A personal portfolio website designed to display my development skills and projects. This highlights my proficiency in Angular, and more.",
-    image: "/projects/portfolio.webp",
-    github: "https://github.com/Akshayp2002/personal-portfolio-angular",
-    view: "https://devakshay.app",
-    workStatus: true,
-    date: "Augest - 2024",
+    date: "2026 · 09",
     demo: false,
     personal: true,
     tech: [
-      {
-        name: "Angular",
-        image: "/tech/angular17.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
-      {
-        name: "Figma",
-        image: "/tech/figma.svg",
-      },
+      { name: "JavaScript", image: "/tech/js.svg" },
+      { name: "Tailwind", image: "/tech/tailwindcss.svg" },
+      { name: "GitHub Pages", image: "/tech/github.svg" },
     ],
   },
   {
-    name: "Retro Radio",
+    name: "Prompts Chat 中文站",
     description:
-      "Retro Radio is a music streaming platform that offers a nostalgic experience with a curated selection of classic and vintage music.",
-    image: "/projects/retro-radio.png",
-    github: "https://github.com/Akshayp2002/radio",
-    view: "https://radio-devakshay.vercel.app",
+      "prompts.chat 的非官方简体中文镜像：2205 条提示词全部译成中文，中英对照、全文搜索、一键复制。Astro 静态站 + 增量翻译流水线。",
+    image: "/projects/cover-prompts-zh.svg",
+    github: "https://github.com/kael-odin/prompts-chat-zh",
+    view: "https://kael-odin.github.io/prompts-chat-zh/",
     workStatus: true,
-    date: "Feb - 2026",
+    date: "2026 · 09",
     demo: false,
     personal: true,
     tech: [
-      {
-        name: "Nextjs",
-        image: "/tech/nextjs2.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "vercel",
-        image: "/tech/vercel-icon-dark.svg",
-      },
-      {
-        name: "Supabase",
-        image: "/tech/supabase.svg",
-      },
+      { name: "Astro", image: "/tech/astro-original.svg" },
+      { name: "TypeScript", image: "/tech/typescript.svg" },
+      { name: "GitHub Actions", image: "/tech/github.svg" },
     ],
   },
   {
-    name: "Minimal Portfolio",
+    name: "Kael's Blog",
     description:
-      "A new and minimal personal portfolio website designed to display my development skills and projects.",
-    image: "/projects/minimal-portfolio.png",
-    github: "https://github.com/Akshayp2002/nextjs-portfolio",
-    view: "https://devakshaynew.vercel.app",
-    workStatus: false,
-    date: "December - 2025",
+      "个人博客与笔记：技术、项目、随笔。Next.js + Markdown，记录踩坑与思考。",
+    image: "/projects/cover-blog.svg",
+    github: "https://github.com/kael-odin/kael-odin-blog",
+    view: "https://kael-odin-blog.vercel.app",
+    workStatus: true,
+    date: "2026 · 03",
     demo: false,
     personal: true,
     tech: [
-      {
-        name: "Nextjs",
-        image: "/tech/nextjs2.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
+      { name: "Next.js", image: "/tech/nextjs2.svg" },
+      { name: "TypeScript", image: "/tech/typescript.svg" },
+      { name: "Markdown", image: "/tech/markdown-original.svg" },
     ],
   },
   {
-    name: "Hinez",
+    name: "Academic Skills 榜单",
     description:
-      "Unlock comprehensive efficiency and growth potential. Transform your operations today to boost workforce engagement and productivity",
-    image: "/projects/hinez.webp",
-    github: false,
-    view: "https://myhinez.com/",
-    workStatus: false,
-    date: "May - 2024",
-    demo: false,
-    tech: [
-      {
-        name: "PHP",
-        image: "/tech/php.svg",
-      },
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "Splade",
-        image: "/tech/splade.svg",
-      },
-      {
-        name: "Mysql",
-        image: "/tech/mysql.svg",
-      },
-      {
-        name: "Bootstrap",
-        image: "/tech/bootstrap.svg",
-      },
-    ],
-  },
-  {
-    name: "Rugr",
-    description:
-      "Rugr play acrucial role in the modem financial ecosystem by facilitating between merchants and related stakeholders.",
-    image: "/projects/rugr.webp",
-    github: false,
-    view: "https://rugr.com",
-    workStatus: false,
-    date: "February - 2025",
-    demo: false,
-    tech: [
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "Mysql",
-        image: "/tech/mysql.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Nextjs",
-        image: "/tech/nextjs2.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
-    ],
-  },
-  {
-    name: "Itrend Commerce",
-    description:
-      "An API-driven platform integrating Amazon Ads, and real-time inventory synchronization, and efficient large-scale data processing.",
-    image: "/projects/itrend-sp.webp",
-    github: false,
-    view: false,
+      "面向中文用户的学术论文与科研 Agent Skill 每日排行榜：自动搜索、过滤并排名 GitHub 上的科研 Skill 仓库。",
+    image: "/projects/cover-research-skills.svg",
+    github: "https://github.com/kael-odin/awesome-academic-research-skills",
+    view: "https://kael-odin.github.io/awesome-academic-research-skills/",
     workStatus: true,
-    date: "May - 2025",
-    demo: false,
-    personal: false,
-    tech: [
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "Mysql",
-        image: "/tech/mysql.svg",
-      },
-      {
-        name: "Bootstrap",
-        image: "/tech/bootstrap.svg",
-      },
-      {
-        name: "Amazon SP",
-        image: "/tech/aws.svg",
-      },
-      {
-        name: "Ollama",
-        image: "/tech/ollama.svg",
-      },
-    ],
-  },
-  {
-    name: "Home Lab System",
-    description:
-      "The Home Lab System is a self-hosted setup in my house, using an old computer to run private services with Docker and other software solutions.",
-    image: "/projects/homelabs.webp",
-    github: "https://github.com/Akshayp2002/homelab/tree/main",
-    view: false,
-    workStatus: true,
-    date: "January - 2025",
+    date: "2026 · 06",
     demo: false,
     personal: true,
     tech: [
-      {
-        name: "Docker",
-        image: "/tech/docker.svg",
-      },
-      {
-        name: "Jellyfin",
-        image: "/tech/jellyfin.svg",
-      },
-      {
-        name: "Tailscale",
-        image: "/tech/tailscale.svg",
-      },
-      {
-        name: "Immich",
-        image: "/tech/immich.svg",
-      },
-      {
-        name: "Linux",
-        image: "/tech/linux.svg",
-      },
+      { name: "JavaScript", image: "/tech/js.svg" },
+      { name: "Python", image: "/tech/python-original.svg" },
+      { name: "GitHub Actions", image: "/tech/github.svg" },
     ],
   },
   {
-    name: "Quotes Generator",
+    name: "DSH Control Center",
     description:
-      "Click to receive a new, uplifting quote from a wide range of categories and let each day be filled with wisdom and motivation.",
-    image: "/projects/quotes.webp",
-    github: "https://github.com/Akshayp2002/quote-generator",
-    view: "https://timspass.vercel.app/quotes",
-    workStatus: false,
-    date: "Augest - 2024",
-    demo: true,
-    tech: [
-      {
-        name: "Angular",
-        image: "/tech/angular17.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
-      {
-        name: "Apininja",
-        image: "/tech/ninja.png",
-      },
-    ],
-  },
-  {
-    name: "QRCode Generate",
-    description:
-      "This tool is perfect for anyone needing a quick and reliable way to create QR codes for personal or professional use.",
-    image: "/projects/qrcode-page.webp",
-    github: "https://github.com/Akshayp2002/quote-generator",
-    view: "https://timspass.vercel.app/qrcode",
-    workStatus: false,
-    date: "Augest - 2024",
-    demo: true,
-    tech: [
-      {
-        name: "Angular",
-        image: "/tech/angular17.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
-      {
-        name: "Apininja",
-        image: "/tech/ninja.png",
-      },
-    ],
-  },
-  {
-    name: "Instagram",
-    description:
-      "A clone of Instagram, the popular social media platform, allowing users to interact with content in a visually appealing and user-friendly environment.",
-    image: "/projects/instagram.webp",
-    github: "https://github.com/Akshayp2002/instagram-angular",
-    view: "https://devinstagram.vercel.app",
+      "Cherry 风格的 DeepSeek Harness Web 控制中心，AGPL 开源。",
+    image: "/projects/cover-dsh-cc.svg",
+    github: "https://github.com/kael-odin/dsh-control-center",
+    view: false,
     workStatus: true,
-    date: "July - 2024",
+    date: "2026 · 08",
+    demo: false,
+    personal: true,
+    tech: [
+      { name: "TypeScript", image: "/tech/typescript.svg" },
+      { name: "React", image: "/tech/react-original.svg" },
+      { name: "Ollama", image: "/tech/ollama.svg" },
+    ],
+  },
+  {
+    name: "Devfolio 模板",
+    description:
+      "深色开发者作品集模板（React + Vite + Tailwind）：主页、时间线、技能、项目、奖项、统计、联系，改 data/*.json 就能用。",
+    image: "/projects/cover-devfolio.svg",
+    github: "https://github.com/kael-odin/devfolio",
+    view: "https://kael-odin.github.io/devfolio/",
+    workStatus: false,
+    date: "2026 · 09",
+    demo: false,
+    personal: true,
+    tech: [
+      { name: "React", image: "/tech/react-original.svg" },
+      { name: "Tailwind", image: "/tech/tailwindcss.svg" },
+      { name: "TypeScript", image: "/tech/typescript.svg" },
+    ],
+  },
+  {
+    name: "Free Proxy List",
+    description:
+      "每日更新的免费代理列表（HTTP / HTTPS / SOCKS4 / SOCKS5），GitHub Actions 自动校验可用性，零服务器成本。",
+    image: "/projects/cover-proxy-list.svg",
+    github: "https://github.com/kael-odin/awesome-free-proxy-list",
+    view: "https://kael-odin.github.io/awesome-free-proxy-list/",
+    workStatus: true,
+    date: "2026 · 09",
     demo: true,
     tech: [
-      {
-        name: "Angular",
-        image: "/tech/angular17.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Flowbite",
-        image: "/tech/flowbite.svg",
-      },
-      {
-        name: "Typescript",
-        image: "/tech/typescript.svg",
-      },
+      { name: "Python", image: "/tech/python-original.svg" },
+      { name: "GitHub Actions", image: "/tech/github.svg" },
     ],
   },
   {
-    name: "Netflix",
+    name: "Neon GitHub Profile",
     description:
-      "A Netflix clone that allows browsing and viewing TV shows using data from an open API, featuring a responsive and user-friendly interface.",
-    image: "/projects/netflix-cole.webp",
-    github: "https://github.com/Akshayp2002/netflix-clone-angular",
-    view: "https://netflix-clone-angular2.vercel.app",
-    workStatus: false,
-    date: "June - 2024",
-    demo: true,
-    tech: [
-      {
-        name: "Angular",
-        image: "/tech/angular17.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Flowbite",
-        image: "/tech/flowbite.svg",
-      },
-      {
-        name: "Swipper",
-        image: "/tech/swipper.svg",
-      },
-      {
-        name: "Tmdb",
-        image: "/tech/tmdb.svg",
-      },
-    ],
-  },
-  {
-    name: "Swiftrevel",
-    description:
-      "Swiftrevel fintech, integrating flawlessly with your existing tools and software to and streamline your workflow.",
-    image: "/projects/swiftrevel.webp",
-    github: false,
-    view: "https://swiftrevel.com",
-    workStatus: false,
-    date: "May - 2024",
-    demo: false,
-    tech: [
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "Tailwind",
-        image: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Nextjs",
-        image: "/tech/nextjs2.svg",
-      },
-      {
-        name: "Mysql",
-        image: "/tech/mysql.svg",
-      },
-    ],
-  },
-  {
-    name: "Farmers Copper",
-    description:
-      "Farmer’s Copper Ltd. extends its services throughout many industries. Provide the raw copper alloy materials.",
-    image: "/projects/farmers-copper.webp",
-    github: false,
+      "赛博霓虹风自部署 GitHub 个人主页：手绘 SVG Hero、终端卡片、自定义统计生成器和 4 个自动化 Action。",
+    image: "/projects/cover-profile.svg",
+    github: "https://github.com/kael-odin/kael-odin",
     view: false,
     workStatus: false,
-    date: "November - 2023",
+    date: "2026 · 09",
     demo: false,
+    personal: true,
     tech: [
-      {
-        name: "Laravel",
-        image: "/tech/laravel.svg",
-      },
-      {
-        name: "HTML",
-        image: "/tech/html5.svg",
-      },
-      {
-        name: "CSS",
-        image: "/tech/css3.svg",
-      },
-      {
-        name: "Mysql",
-        image: "/tech/mysql.svg",
-      },
-    ],
-  },
-  {
-    name: "Student 360",
-    description:
-      "A final year project: A student management portal designed to manage attendance, grades, student details, and other academic details.",
-    image: "/projects/student360.webp",
-    github: "https://github.com/Akshayp2002/Student-360",
-    view: false,
-    workStatus: false,
-    date: "April - 2022",
-    demo: false,
-    tech: [
-      {
-        name: "Nodejs",
-        image: "/tech/nodejs.svg",
-      },
-      {
-        name: "Bootstrap",
-        image: "/tech/bootstrap.svg",
-      },
-      {
-        name: "MongoDB",
-        image: "/tech/mongodb.svg",
-      },
-      {
-        name: "HTML",
-        image: "/tech/html5.svg",
-      },
-      {
-        name: "Javascript",
-        image: "/tech/js.svg",
-      },
+      { name: "Python", image: "/tech/python-original.svg" },
+      { name: "SVG", image: "/tech/css3.svg" },
+      { name: "GitHub Actions", image: "/tech/github.svg" },
     ],
   },
 ];

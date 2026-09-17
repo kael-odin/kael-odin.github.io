@@ -44,14 +44,17 @@ export const siteConfig = {
 | --- | --- |
 | 姓名、QQ、微信、邮箱、GitHub | `src/app/site-config.ts` |
 | 地图定位 | `src/app/site-config.ts` 里的 `location.lat` / `lng` / `zoom` |
-| 博客文章 | `src/app/lib/blog-data.ts` 的 `blogPosts` 数组 |
-| 项目列表 | `src/app/components/tiles/projects/projects.ts` |
+| 博客文章 | `src/app/lib/blog-data.ts` 的 `blogPosts` 数组（封面放 `public/blog/`） |
+| 项目列表 | `src/app/components/tiles/projects/projects.ts`（封面用 `assets-src/build-covers.mjs` 生成） |
 | 工具列表 | `src/app/components/tiles/tools/tools.ts` |
 | 工作经历 / 教育背景 | `src/app/components/tiles/about/careers.ts` 与 `AboutContent.tsx` 里的 `education` |
 | 首页卡片顺序 / 尺寸 | `src/app/home/page.tsx` 的 `TILE_CONFIG` |
-| 头像图片 | 替换 `public/` 下的 `memoji.png`、`head-hand.png`、`mepopper.png`、`me-laptop.png`、`mecloud.png` |
+| 头像 | `assets-src/avatar-base.svg` 母版 → 跑 `node assets-src/build-avatars.mjs` |
+| Logo / favicon / OG 分享图 | `assets-src/icon.svg` → 跑 `node scripts/generate-brand-assets.mjs` |
 
 > 首页卡片支持拖拽换位，顺序不会被保存，刷新后回到 `TILE_CONFIG` 的默认顺序。
+>
+> **待办提醒**：`AboutContent.tsx` 里的教育背景（中国矿业大学等）目前是占位示例，记得替换成真实信息。
 
 ---
 
@@ -103,4 +106,5 @@ public/                      # 静态资源（图片、图标、SVG）
 ## 说明
 
 - 本项目是静态站点（`output: "export"`），**没有服务端**。原模板里的联系表单、评价提交、Contentful CMS 都依赖服务端接口，已移除，改为本地静态数据 + 直接展示 QQ / 微信联系方式。
-- 模板来源：[Akshayp2002/next-portfolio-new](https://github.com/Akshayp2002/next-portfolio-new)（MIT License）。
+- 模板来源：[Akshayp2002/next-portfolio-new](https://github.com/Akshayp2002/next-portfolio-new)（MIT License），在此基础上深度改造：中文优先、全新品牌视觉（K 徽标 + 手绘 SVG 卡通头像）、动效增强（卡片 3D 倾斜、级联入场、扫光、Logo 流光）。
+- 技术图标来自 [devicon](https://github.com/devicons/devicon)（MIT）与模板自带资源。

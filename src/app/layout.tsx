@@ -23,8 +23,24 @@ const youngSerif = Young_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kael-odin.github.io"),
   title: siteConfig.title,
   description: siteConfig.description,
+  keywords: ["汤勇", "Kael Odin", "个人作品集", "开发者", "全栈", "AI 工具", "徐州"],
+  authors: [{ name: "汤勇 Kael Odin", url: "https://github.com/kael-odin" }],
+  openGraph: {
+    type: "website",
+    locale: "zh_CN",
+    url: "https://kael-odin.github.io",
+    siteName: "汤勇 Kael Odin 的个人作品集",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({

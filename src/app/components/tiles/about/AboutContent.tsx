@@ -7,12 +7,14 @@ import {
   FiExternalLink,
   FiX,
   FiCode,
+  FiGithub,
+  FiZap,
 } from "react-icons/fi";
-import { FaQuoteLeft } from "react-icons/fa6";
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
+import { siteConfig } from "@/site-config";
 import { careersData, type CareerEntry, type CareerProject } from "@/components/tiles/about/careers";
 
 const spinGlow = keyframes`
@@ -50,43 +52,26 @@ const GlowBorder = styled.div`
   filter: blur(4px);
 `;
 
-type TestimonialItem = {
-  id: number;
-  quote: string;
-  name: string;
-  position: string;
-  company: string;
-  rating: number;
-};
+// TODO: 技能标签按你的实际情况增删
+const skills = ["全栈开发", "TypeScript", "Python", "AI 工具链", "开源爱好者"];
 
-const skills = ["Software Developer", "Laravel", "PHP", "Tailwind"];
-
+// TODO: 教育背景为占位示例，请改成你的真实经历
 const education = [
   {
-    degree: "BCA",
-    institute: "Manipal University Jaipur",
-    period: "2024 - Present",
+    degree: "计算机科学与技术（本科）",
+    institute: "中国矿业大学",
+    period: "在读",
   },
   {
-    degree: "Computer Engineering & IT Infrastructure",
-    institute: "NTTF Bangalore",
-    period: "2019 - 2022",
-  },
-  {
-    degree: "Plus Two Computer Science",
-    institute: "GVHSS Sivapuram",
-    period: "2017 - 2019",
-  },
-  {
-    degree: "SSLC",
-    institute: "GHSS Balussery",
-    period: "2016 - 2017",
+    degree: "高中",
+    institute: "江苏 徐州",
+    period: "毕业",
   },
 ];
 
 function Pill({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-600 dark:border-gray-700 dark:bg-[#111821] dark:text-gray-200">
+    <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-600 transition-colors hover:border-sky-300 hover:text-sky-600 dark:border-gray-700 dark:bg-[#111821] dark:text-gray-200 dark:hover:border-sky-600 dark:hover:text-sky-300">
       <FiCode className="h-3.5 w-3.5" />
       {label}
     </span>
@@ -130,9 +115,7 @@ function ModalPortal({ children }: { children: React.ReactNode }) {
   return createPortal(children, document.body);
 }
 
-const EMPTY_TESTIMONIALS: TestimonialItem[] = [];
-
-export default function AboutContent({ testimonials: initialTestimonials = EMPTY_TESTIMONIALS }: { testimonials?: TestimonialItem[] }) {
+export default function AboutContent() {
   const [isTimelineOpen, setIsTimelineOpen] = useState(false);
   const [selectedCareer, setSelectedCareer] = useState<CareerEntry | null>(null);
   const [projectCarousel, setProjectCarousel] = useState<{
@@ -140,14 +123,10 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
     index: number;
   } | null>(null);
   const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
-  const [testimonials, setTestimonials] = useState<TestimonialItem[]>(initialTestimonials);
 
   const previewExperience = useMemo(() => careersData.slice(0, 2), []);
   const previewEducation = useMemo(() => education.slice(0, 2), []);
 
-  useEffect(() => {
-    setTestimonials(initialTestimonials);
-  }, [initialTestimonials]);
   useEffect(() => {
     const isAnyModalOpen = Boolean(selectedCareer || projectCarousel || isTimelineOpen);
     const previousOverflow = document.body.style.overflow;
@@ -165,13 +144,13 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
     <main className="min-h-screen py-5 flex justify-center">
       <div className="max-w-[1200px] w-full px-4">
         <div className="grid grid-cols-1 gap-5">
-          <section className="min-h-75 rounded-4xl bg-white p-4 dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700 sm:p-5 md:px-10 lg:px-16">
+          <section className="min-h-75 rounded-4xl bg-white p-4 dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700 sm:p-5 md:px-10 lg:px-16 tile-sheen">
             <div className="h-full flex flex-col justify-center">
               <div className="flex items-center gap-6 mb-3">
-                <div className="relative w-24 h-24 shrink-0">
+                <div className="relative w-24 h-24 shrink-0 animate-float-y">
                   <Image
-                    src="/mepopper.png"
-                    alt="汤勇 Kael Odin 的头像"
+                    src="/avatar/avatar-pop.svg"
+                    alt="汤勇 Kael Odin 的卡通头像（探头打招呼）"
                     width={100}
                     height={100}
                     className="rounded-full"
@@ -179,7 +158,9 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
                 </div>
               </div>
               <p className="mt-3 text-gray-500 dark:text-gray-300 text-xs leading-relaxed sm:text-sm md:text-base max-w-[900px]">
-                I am an enthusiastic Laravel developer with experience, keen to leverage my robust knowledge in Laravel and related technologies to significantly contribute to the company success while continuously expanding my expertise. I enjoy creating solutions from scratch, exploring how things work, and I am driven by curiosity to solve complex challenges.
+                你好，我是<span className="font-bold text-gray-800 dark:text-gray-100">汤勇（Kael Odin）</span>，
+                一名来自江苏徐州的开发者。我喜欢把想法快速做成能用的产品：OS 风格的个人主页模板、2200+ 提示词的中文镜像站、学术论文科研 Skill 每日榜单，
+                还有本地大模型与 Agent 工具链的各种折腾。相信「先跑通，再讲清楚」，也相信持续输出的小项目比宏大的计划更有力量。
               </p>
 
               <div className="mt-4 flex flex-wrap gap-2.5">
@@ -233,7 +214,7 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
                       setActiveTab("experience");
                       setIsTimelineOpen(true);
                     }}
-                    className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-[#0d1117] dark:text-gray-200 dark:hover:bg-[#151f2b]"
+                    className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition-all hover:bg-gray-100 hover:-translate-y-0.5 dark:border-gray-600 dark:bg-[#0d1117] dark:text-gray-200 dark:hover:bg-[#151f2b]"
                   >
                     查看全部经历
                     <FiArrowUpRight className="h-3.5 w-3.5" />
@@ -263,7 +244,7 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
                       setActiveTab("education");
                       setIsTimelineOpen(true);
                     }}
-                    className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-[#0d1117] dark:text-gray-200 dark:hover:bg-[#151f2b]"
+                    className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition-all hover:bg-gray-100 hover:-translate-y-0.5 dark:border-gray-600 dark:bg-[#0d1117] dark:text-gray-200 dark:hover:bg-[#151f2b]"
                   >
                     查看全部学历
                     <FiArrowUpRight className="h-3.5 w-3.5" />
@@ -273,41 +254,56 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
             </div>
           </div>
 
-          <SectionCard title="评价">
+          <SectionCard title="关于本站" badge="开源">
             <p className="mb-4 text-xs leading-6 text-gray-600 dark:text-gray-300 sm:text-sm sm:leading-7">
-              来自合作过的伙伴的一些反馈。
+              本站使用 Next.js + Tailwind CSS 构建，纯静态导出后部署在 GitHub Pages，开源可直接自取。
             </p>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {testimonials.length > 0 ? (
-                testimonials.map((item) => (
-                  <GlowContainer key={item.id}>
-                    <GlowBorder />
-                    <article
-                      className="group relative z-10 h-full rounded-[calc(1.5rem-1.5px)] border border-gray-200/80 bg-[#f8fafc] p-4 dark:border-gray-700 dark:bg-[#111821] sm:p-5 flex flex-col overflow-hidden"
-                    >
-                      <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#94a3b8] ring-1 ring-gray-200 dark:bg-[#0d1117] dark:text-[#cbd5e1] dark:ring-gray-600">
-                        <FaQuoteLeft className="h-4 w-4" />
-                      </div>
-                      <p className="mt-4 text-xs leading-5 text-gray-700 dark:text-gray-200 sm:text-sm sm:leading-6">
-                        {item.quote}
-                      </p>
-                      <div className="mt-auto pt-1">
-                        <h3 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white sm:text-base">
-                          - {item.name}
-                        </h3>
-                        <p className="mt-1 text-[11px] text-gray-500 dark:text-gray-400 sm:text-xs">
-                          {item.position} {item.company ? `• ${item.company}` : ""}
-                        </p>
-                      </div>
-                    </article>
-                  </GlowContainer>
-                ))
-              ) : (
-                <div className="col-span-1 md:col-span-2 xl:col-span-3 text-center py-10 text-gray-500">
-                  还没有评价。
-                </div>
-              )}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/card flex items-start gap-3 rounded-2xl border border-gray-200 bg-gray-50/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_12px_24px_rgba(2,132,199,0.12)] dark:border-gray-700 dark:bg-[#111821] dark:hover:border-sky-600"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-gray-800 ring-1 ring-gray-200 dark:bg-[#0d1117] dark:text-gray-100 dark:ring-gray-700">
+                  <FiGithub className="h-4.5 w-4.5" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-gray-900 dark:text-white">GitHub</span>
+                  <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">github.com/kael-odin，所有项目都在这里</span>
+                </span>
+              </a>
+
+              <a
+                href="https://kael-odin.github.io/my-os-homepage/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/card flex items-start gap-3 rounded-2xl border border-gray-200 bg-gray-50/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_24px_rgba(124,58,237,0.12)] dark:border-gray-700 dark:bg-[#111821] dark:hover:border-violet-600"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-gray-800 ring-1 ring-gray-200 dark:bg-[#0d1117] dark:text-gray-100 dark:ring-gray-700">
+                  <FiZap className="h-4.5 w-4.5" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-gray-900 dark:text-white">My OS Homepage</span>
+                  <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">OS 风格互动主页模板，改一个配置就是你的</span>
+                </span>
+              </a>
+
+              <a
+                href="https://kael-odin.github.io/prompts-chat-zh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/card flex items-start gap-3 rounded-2xl border border-gray-200 bg-gray-50/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-[0_12px_24px_rgba(5,150,105,0.12)] dark:border-gray-700 dark:bg-[#111821] dark:hover:border-emerald-600"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-gray-800 ring-1 ring-gray-200 dark:bg-[#0d1117] dark:text-gray-100 dark:ring-gray-700">
+                  <FiCode className="h-4.5 w-4.5" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-gray-900 dark:text-white">Prompts Chat 中文站</span>
+                  <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">2205 条提示词全中文化，支持搜索与一键复制</span>
+                </span>
+              </a>
             </div>
           </SectionCard>
         </div>
@@ -349,7 +345,7 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
               </section>
 
               <section className="rounded-3xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-[#111821]">
-                <h4 className="text-base font-bold tracking-wide text-gray-800 dark:text-gray-100 sm:text-lg">我的职责</h4>
+                <h4 className="text-base font-bold tracking-wide text-gray-800 dark:text-gray-100 sm:text-lg">我在做的事</h4>
                 <p className="mt-2 text-xs leading-6 text-gray-700 dark:text-gray-200 sm:text-sm sm:leading-7">{selectedCareer.myRole}</p>
               </section>
 
@@ -359,7 +355,7 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
                   {selectedCareer.projects.map((project, index) => (
                     <article
                       key={project.name}
-                      className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-[#0d1117] cursor-pointer"
+                      className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-[#0d1117] cursor-pointer transition-transform duration-200 hover:-translate-y-0.5"
                       onClick={() =>
                         setProjectCarousel({
                           projects: selectedCareer.projects,
@@ -500,7 +496,7 @@ export default function AboutContent({ testimonials: initialTestimonials = EMPTY
           <div className="fixed inset-0 z-[1010] flex items-center justify-center bg-black/45 p-4 backdrop-blur-sm modal-backdrop-enter">
           <div className="w-full max-w-3xl rounded-4xl border border-gray-200 bg-white p-4 shadow-2xl dark:border-gray-700 dark:bg-[#0d1117] modal-content-enter sm:p-5 md:p-6">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white sm:text-xl">职业与学历时间线</h3>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white sm:text-xl">经历与学历时间线</h3>
               <button
                 type="button"
                 onClick={() => setIsTimelineOpen(false)}

@@ -56,9 +56,8 @@ export default function IntroTile() {
     return (
         <div className="flex flex-col justify-center h-full px-10 lg:px-16 bg-white dark:bg-[#0d1117] rounded-4xl dark:ring-2 dark:ring-gray-700">
             <div className="flex items-center gap-3 mb-2">
-                {/* Placeholder for 3D Avatar Image */}
-                <div className="relative w-24 h-24">
-                    <Image src="/memoji.png" alt="汤勇的头像" width={60} height={100} className="rounded-full" />
+                <div className="relative w-24 h-24 animate-float-y">
+                    <Image src="/avatar/avatar-wave.svg" alt="汤勇的卡通头像（挥手打招呼）" width={96} height={96} className="rounded-full" priority />
                 </div>
                 <div className="-ml-2 -mt-7 min-h-[60px]" aria-live="polite" aria-label="Greeting chat">
                     <div
@@ -95,7 +94,7 @@ export default function IntroTile() {
                 ，一名来自江苏徐州的软件开发者。
             </h1>
             <p className="mt-1 text-gray-500 dark:text-gray-400 text-base leading-relaxed max-w-[500px]">
-                用 PHP、Laravel 和 Tailwind CSS 构建干净、高效的 Web 方案。喜欢用代码解决问题，也喜欢做一些真正能用得上的小工具。
+                喜欢折腾 Web 应用、AI 工具和自动化流水线，把一个个想法做成真正能用得上的东西。目前在持续开源中，欢迎逛逛我的 GitHub。
             </p>
         </div>
     );

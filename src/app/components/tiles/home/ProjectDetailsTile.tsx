@@ -3,17 +3,17 @@ import Link from "next/link";
 
 export default function ProjectDetailsTile() {
 	return (
-		<div className="w-full h-full relative overflow-hidden rounded-4xl bg-[#69ccb8] dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700">
+		<div className="group w-full h-full relative overflow-hidden rounded-4xl bg-[#69ccb8] dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700">
 			<div className="absolute -top-14 right-[-24%] w-[86%] h-[40%] bg-[#9adacc] rounded-[48%] dark:bg-[#0d1117]" />
 			<div className="absolute -bottom-16 -left-14 w-[75%] h-[42%] bg-[#efbdd1] rounded-[55%] dark:bg-[#0d1117]" />
 
 			<div className="absolute top-[-4%] left-[112%] w-[76%] aspect-[257/567] -rotate-[30deg] rounded-[2.2rem] bg-white/95 shadow-[0_16px_28px_rgba(15,23,42,0.12)] ring-1 ring-black/5 z-10" />
 
 			<div className="absolute top-[18%] left-[36%] w-[76%] aspect-[257/567] -rotate-[30deg] rounded-[2.2rem] shadow-[0_20px_40px_rgba(15,23,42,0.20)] overflow-hidden ring-1 ring-black/5 z-20 bg-white">
-				<div className="w-full h-full relative">
+				<div className="w-full h-full relative transition-transform duration-500 ease-out group-hover:scale-[1.04] group-hover:-translate-y-2">
 					<Image
-						src="/projects/audis-radio-p.png"
-						alt="Audis Radio 移动端项目预览图"
+						src="/art/phone-portfolio.svg"
+						alt="手机上浏览 Kael Odin 的作品集"
 						fill
 						quality={100}
 						unoptimized

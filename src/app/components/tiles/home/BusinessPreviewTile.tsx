@@ -3,16 +3,16 @@ import Link from "next/link";
 
 export default function BusinessPreviewTile() {
     return (
-        <div className="w-full h-full relative overflow-hidden rounded-4xl bg-[#f4dc93] dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700">
+        <div className="group w-full h-full relative overflow-hidden rounded-4xl bg-[#f4dc93] dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700">
             <div className="absolute -top-20 -right-16 w-[48%] aspect-square bg-white/45 rounded-full dark:bg-[#0d1117]" />
             <div className="absolute -bottom-24 left-[10%] w-[38%] h-[72%] bg-[#efbdd1] rounded-[50%] dark:bg-[#0d1117]" />
 
             <div className="absolute top-[18%] left-[17%] w-[68%] aspect-[16/9] -rotate-[31deg] rounded-[2rem] bg-[#f8f8f8] shadow-[0_22px_42px_rgba(15,23,42,0.18)] overflow-hidden">
                 <Image
-                    src="/projects/hinez.webp"
-                    alt="业务应用预览图"
+                    src="/art/browser-terminal.svg"
+                    alt="浏览器里打开 Kael Odin 的个人主页（终端欢迎界面）"
                     fill
-                    className="object-contain"
+                    className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-translate-y-2"
                     quality={100}
                     unoptimized
                 />
