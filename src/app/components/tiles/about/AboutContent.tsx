@@ -144,7 +144,7 @@ export default function AboutContent() {
     <main className="min-h-screen py-5 flex justify-center">
       <div className="max-w-[1200px] w-full px-4">
         <div className="grid grid-cols-1 gap-5">
-          <section className="min-h-75 rounded-4xl bg-white p-4 dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700 sm:p-5 md:px-10 lg:px-16 tile-sheen">
+          <section className="min-h-75 rounded-4xl bg-white p-4 dark:bg-[#0d1117] dark:ring-2 dark:ring-gray-700 sm:p-5 md:px-10 lg:px-16">
             <div className="h-full flex flex-col justify-center">
               <div className="flex items-center gap-6 mb-3">
                 <div className="relative w-24 h-24 shrink-0 animate-float-y">

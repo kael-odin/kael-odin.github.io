@@ -7,10 +7,11 @@ import { copyText } from "@/lib/copy-text";
 
 type SocialSlide = {
 	id: "qq" | "wechat";
-	label: string;
-	value: string;
+	name: string;
 	hint: string;
+	/** 渐变背景 + 氛围光颜色 */
 	bgClass: string;
+	glowClass: string;
 	/** 有 href 的点击跳转，没有的点击复制 */
 	href?: string;
 };
@@ -18,23 +19,24 @@ type SocialSlide = {
 const SLIDES: SocialSlide[] = [
 	{
 		id: "qq",
-		label: "QQ",
-		value: siteConfig.qq,
-		hint: "点击发起 QQ 会话",
-		bgClass: "bg-[#12B7F5]",
+		name: "QQ",
+		hint: "点击发起会话",
+		bgClass: "bg-gradient-to-br from-[#38bdf8] to-[#2563eb]",
+		glowClass: "bg-white/25",
 		href: qqChatUrl,
 	},
 	{
 		id: "wechat",
-		label: "微信",
-		value: siteConfig.wechat,
+		name: "微信",
 		hint: "点击复制微信号",
-		bgClass: "bg-[#07C160]",
+		bgClass: "bg-gradient-to-br from-[#34d399] to-[#059669]",
+		glowClass: "bg-white/20",
+		href: undefined,
 	},
 ];
 
 const CIRCLE_CLASS =
-	"w-24 h-24 rounded-full bg-white/15 backdrop-blur-[2px] border border-white/25 flex flex-col items-center justify-center gap-1.5 shadow-[0_12px_35px_rgba(0,0,0,0.2)] transition-all duration-300 ease-out hover:scale-105 hover:bg-white/25 cursor-pointer";
+	"w-24 h-24 rounded-full bg-white/15 backdrop-blur-[2px] border border-white/25 flex items-center justify-center shadow-[0_16px_40px_rgba(2,8,23,0.25)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 hover:bg-white/25 hover:shadow-[0_20px_50px_rgba(2,8,23,0.35)] cursor-pointer";
 
 export default function SocialTile() {
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -43,7 +45,7 @@ export default function SocialTile() {
 	useEffect(() => {
 		const interval = window.setInterval(() => {
 			setActiveIndex((prev) => (prev + 1) % SLIDES.length);
-		}, 3800);
+		}, 4200);
 
 		return () => window.clearInterval(interval);
 	}, []);
@@ -62,48 +64,54 @@ export default function SocialTile() {
 
 				const body = (
 					<>
-						<Icon className="w-10 h-10 text-white" aria-hidden />
-						<span className="text-[11px] font-semibold leading-none text-white/95">
-							{slide.value}
-						</span>
+						{/* 氛围光斑 */}
+						<div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${slide.glowClass} blur-2xl`} aria-hidden />
+						<div className="absolute -bottom-14 -left-8 w-36 h-36 rounded-full bg-black/10 blur-2xl" aria-hidden />
+
+						{/* 大图标，不显示号码 */}
+						<a
+							href={slide.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							onClick={slide.href ? undefined : (event) => { event.preventDefault(); handleCopy(siteConfig[slide.id === "qq" ? "qq" : "wechat"]); }}
+							aria-label={`${slide.name}：${slide.hint}`}
+							className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-4"
+						>
+							<span className={CIRCLE_CLASS}>
+								<Icon className="w-12 h-12 text-white drop-shadow-[0_6px_16px_rgba(2,8,23,0.35)]" aria-hidden />
+							</span>
+							<span className="flex flex-col items-center gap-1.5">
+								<span className="text-white font-semibold text-base tracking-wide drop-shadow-[0_2px_8px_rgba(2,8,23,0.3)]">
+									{slide.name}
+								</span>
+								<span className="inline-flex items-center gap-1.5 rounded-full bg-black/15 backdrop-blur-[2px] px-3 py-1 text-[11px] font-medium text-white/90">
+									{slide.hint}
+									<svg width="10" height="10" viewBox="0 0 18.256 18.256" aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">
+										<g transform="translate(5.363 5.325)">
+											<path d="M14.581,7.05,7.05,14.581" transform="translate(-7.05 -7.012)" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+											<path d="M10,7l5.287.037.038,5.287" transform="translate(-7.756 -7)" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+										</g>
+									</svg>
+								</span>
+							</span>
+						</a>
 					</>
 				);
 
 				return (
 					<div
 						key={slide.id}
-						className={`absolute inset-0 flex flex-col items-center justify-center gap-3 transition-[opacity,transform,background-color] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${slide.bgClass} ${isActive ? "opacity-100 scale-100 pointer-events-auto z-10" : "opacity-0 scale-[0.98] pointer-events-none z-0"}`}
+						className={`absolute inset-0 flex flex-col items-center justify-center transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${slide.bgClass} ${isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-[0.98] pointer-events-none z-0"}`}
 						aria-hidden={!isActive}
 					>
-						{slide.href ? (
-							<a
-								href={slide.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`${slide.label}：${slide.value}`}
-								className={CIRCLE_CLASS}
-							>
-								{body}
-							</a>
-						) : (
-							<button
-								type="button"
-								onClick={() => handleCopy(slide.value)}
-								aria-label={`复制${slide.label}：${slide.value}`}
-								className={CIRCLE_CLASS}
-							>
-								{body}
-							</button>
-						)}
-
-						<span className="text-[11px] font-medium text-white/85">{slide.hint}</span>
+						{body}
 					</div>
 				);
 			})}
 
 			{copyState !== "idle" && (
-				<div className="absolute top-4 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white">
-					{copyState === "done" ? "微信号已复制" : "复制失败，请手动输入"}
+				<div className="absolute top-4 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+					{copyState === "done" ? "已复制，去粘贴吧" : "复制失败，请手动输入"}
 				</div>
 			)}
 

@@ -112,39 +112,67 @@ textarea,
   animation-delay: var(--enter-delay, 0ms);
 }
 
-/* ---------- 悬停扫光：一层斜向高光滑过卡片 ---------- */
-.tile-sheen {
+/* ---------- 「光随鼠标」：光标位置驱动的两种光 ----------
+   --mx / --my 由 SortableItem 的 pointermove 以像素写入。
+   ::before = 1px 边缘辉光（mask 挖成描边环），::after = 卡片内部光斑。
+   两者共用同一个光源位置，只在 hover 时淡入，单一材质贯穿全局。 */
+.card-lit {
   position: relative;
 }
 
-.tile-sheen::after {
+.card-lit::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(13, 17, 23, 0.05) 50%,
-    transparent 60%
+  padding: 1px;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(56, 189, 248, 0.85),
+    rgba(139, 92, 246, 0.5) 45%,
+    transparent 75%
   );
-  transform: translateX(-130%);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
-  z-index: 5;
+  z-index: 7;
 }
 
-.tile-sheen:hover::after {
-  transform: translateX(130%);
+.card-lit:hover::before {
+  opacity: 1;
 }
 
-.dark .tile-sheen::after {
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.07) 50%,
-    transparent 60%
+.card-lit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(59, 130, 246, 0.08),
+    transparent 65%
   );
+  opacity: 0;
+  transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.dark .card-lit::after {
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(139, 92, 246, 0.17),
+    rgba(56, 189, 248, 0.06) 45%,
+    transparent 72%
+  );
+}
+
+.card-lit:hover::after {
+  opacity: 1;
 }
 
 /* ---------- 轻浮动（装饰元素用） ---------- */
@@ -223,9 +251,5 @@ textarea,
   .animate-float-y,
   .page-transition-enter {
     animation: none;
-  }
-
-  .tile-sheen::after {
-    display: none;
   }
 }

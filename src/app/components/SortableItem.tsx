@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
-/** 3D 倾斜跟随的最大角度（度） */
-const MAX_TILT = 4;
+import { useCardLight } from "@/lib/use-card-light";
 
 export function SortableItem({
     id,
@@ -22,36 +20,13 @@ export function SortableItem({
     enterIndex?: number;
 }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled });
-    const tiltRef = useRef<HTMLDivElement>(null);
-    const rafRef = useRef<number>(0);
+    const { ref: lightRef, onPointerMove } = useCardLight();
 
     const style = {
         transform: transform && !isDragging ? `translate3d(0px, ${transform.y}px, 0)` : undefined,
         transition: isDragging ? undefined : transition,
         zIndex: isDragging ? 0 : 1,
         ...(enterIndex !== undefined ? ({ "--enter-delay": `${Math.min(enterIndex, 12) * 70}ms` } as React.CSSProperties) : {}),
-    };
-
-    /** 鼠标跟随的轻微 3D 倾斜（拖拽中与触屏不生效） */
-    const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-        if (disabled || isDragging || event.pointerType !== "mouse") return;
-        const el = tiltRef.current;
-        if (!el) return;
-
-        const rect = el.getBoundingClientRect();
-        const px = (event.clientX - rect.left) / rect.width - 0.5;
-        const py = (event.clientY - rect.top) / rect.height - 0.5;
-
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(() => {
-            el.style.transform = `perspective(900px) rotateX(${(-py * MAX_TILT).toFixed(2)}deg) rotateY(${(px * MAX_TILT).toFixed(2)}deg) translateY(-2px)`;
-        });
-    };
-
-    const resetTilt = () => {
-        cancelAnimationFrame(rafRef.current);
-        const el = tiltRef.current;
-        if (el) el.style.transform = "";
     };
 
     if (isDragging) {
@@ -74,8 +49,7 @@ export function SortableItem({
             style={style}
             {...(!disabled ? attributes : {})}
             {...(!disabled ? listeners : {})}
-            onPointerMove={handlePointerMove}
-            onPointerLeave={resetTilt}
+            onPointerMove={disabled || isDragging ? undefined : onPointerMove}
             className={`
                 ${!disabled ? "touch-none cursor-grab active:cursor-grabbing" : ""}
                 ${enterIndex !== undefined ? "tile-enter" : ""}
@@ -84,9 +58,9 @@ export function SortableItem({
             `}
         >
             <div
-                ref={tiltRef}
-                className={`w-full h-full rounded-4xl pointer-events-auto will-change-transform tile-sheen`}
-                style={{ transitionProperty: "box-shadow, transform", transitionDuration: "220ms", transitionTimingFunction: "ease-out" }}
+                ref={lightRef}
+                onPointerMove={disabled || isDragging ? undefined : onPointerMove}
+                className="card-lit w-full h-full rounded-4xl pointer-events-auto transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_24px_48px_-16px_rgba(2,8,23,0.22)] dark:hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.65)]"
             >
                 {children}
             </div>

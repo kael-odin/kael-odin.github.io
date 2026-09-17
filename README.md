@@ -106,5 +106,5 @@ public/                      # 静态资源（图片、图标、SVG）
 ## 说明
 
 - 本项目是静态站点（`output: "export"`），**没有服务端**。原模板里的联系表单、评价提交、Contentful CMS 都依赖服务端接口，已移除，改为本地静态数据 + 直接展示 QQ / 微信联系方式。
-- 模板来源：[Akshayp2002/next-portfolio-new](https://github.com/Akshayp2002/next-portfolio-new)（MIT License），在此基础上深度改造：中文优先、全新品牌视觉（K 徽标 + 手绘 SVG 卡通头像）、动效增强（卡片 3D 倾斜、级联入场、扫光、Logo 流光）。
+- 模板来源：[Akshayp2002/next-portfolio-new](https://github.com/Akshayp2002/next-portfolio-new)（MIT License），在此基础上深度改造：中文优先、全新品牌视觉（K 徽标 + 手绘 SVG 卡通头像）、CSS 实景卡片（手机 / 浏览器窗口组合）、「光随鼠标」动效（光标追踪光斑 + 边缘辉光 + 级联入场）。
 - 技术图标来自 [devicon](https://github.com/devicons/devicon)（MIT）与模板自带资源。
